@@ -5,8 +5,7 @@ from commands import door_commands
 from commands import invoker
 
 
-def open_door():
-    door = Door('airlock')
+def open_door(door):
     open_command = door_commands.LockCommand(door)
     close_command = door_commands.UnlockCommand(door)
     command_invoker = invoker.Invoker()
@@ -17,5 +16,8 @@ if __name__ == '__main__':
     logging.basicConfig(format='%(levelname)s - %(message)s',
                         level=logging.INFO)
 
-    open_door()
+    door = Door('airlock')
+    print('Door is open: {}'.format(not door.locked))
+    open_door(door)
+    print('Door is open: {}'.format(not door.locked))
 
