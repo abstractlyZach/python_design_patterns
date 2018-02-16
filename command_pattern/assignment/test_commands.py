@@ -1,4 +1,5 @@
 import pytest
+import testfixtures
 
 from actions.door import Door
 from commands import door_commands
@@ -21,10 +22,19 @@ def test_basic_door_lock(door_and_invoker):
     invoker.activate(door)
     assert door.locked
 
+
 def test_basic_door_unlock(door_and_invoker):
     door, invoker = door_and_invoker
     door.unlock()
     invoker.deactivate(door)
     assert not door.locked
+
+
+def test_null_command_if_unrecognized_object_activated():
+    with testfixtures.LogCapture() as l:
+        command_invoker = invoker.Invoker()
+        command_invoker.activate('abc')
+    l.check(('root', 'INFO', 'null command.'))
+
 
 
