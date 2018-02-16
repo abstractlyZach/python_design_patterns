@@ -15,3 +15,8 @@ class Invoker(object):
         """Activates the thing."""
         activation_command = self._object_commands[thing][0]
         activation_command.execute()
+
+    def deactivate(self, thing):
+        """Deactivate the thing."""
+        deactivation_command = self._object_commands[thing][1]
+        deactivation_command.execute()
