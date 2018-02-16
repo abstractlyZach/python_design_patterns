@@ -9,4 +9,4 @@ class Door(object):
         logging.info("%s is locked." % self.name)
 
     def unlock(self):
-        print("%s is unlocked." % self.name)
+        logging.info("%s is unlocked." % self.name)

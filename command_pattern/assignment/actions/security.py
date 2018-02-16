@@ -1,6 +1,9 @@
+import logging
+
+
 class Security(object):
     def arm(self):
-        print ('Security system armed')
+        logging.info('Security system armed')
 
     def disarm(self):
-        print('Security disarmed')
+        logging.info('Security disarmed')
