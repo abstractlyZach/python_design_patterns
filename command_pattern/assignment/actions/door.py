@@ -7,12 +7,18 @@ class Door(object):
         self._locked = False
 
     def lock(self):
-        logging.info("%s is locked." % self.name)
-        self._locked = True
+        if self._locked:
+            raise Exception('Door is already locked.')
+        else:
+            logging.info("%s is locked." % self.name)
+            self._locked = True
 
     def unlock(self):
-        logging.info("%s is unlocked." % self.name)
-        self._locked = False
+        if self._locked:
+            logging.info("%s is unlocked." % self.name)
+            self._locked = False
+        else:
+            raise Exception('Door is already unlocked.')
 
     @property
     def locked(self):

@@ -42,7 +42,16 @@ def test_door_unlock_and_lock(door_and_invoker):
     invoker.activate(door)
     assert door.locked
 
+def test_cant_unlock_unlocked_door(door_and_invoker):
+    door, invoker = door_and_invoker
+    with pytest.raises(Exception):
+        door.unlock()
 
+def test_cant_lock_locked_door(door_and_invoker):
+    door, invoker = door_and_invoker
+    door.lock()
+    with pytest.raises(Exception):
+        door.lock()
 
 def test_null_command_if_unrecognized_object_activated():
     with testfixtures.LogCapture() as l:
