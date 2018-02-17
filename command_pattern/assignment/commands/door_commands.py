@@ -1,6 +1,10 @@
 from . import command_abc
 
 
+def make_commands(door):
+    return LockCommand(door), UnlockCommand(door)
+
+
 class LockCommand(command_abc.AbsCommand):
     def __init__(self, door):
         self._door = door

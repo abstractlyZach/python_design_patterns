@@ -1,6 +1,9 @@
 from . import command_abc
 
 
+def make_commands(security_system):
+    return ArmCommand(security_system), DisarmCommand(security_system)
+
 class ArmCommand(command_abc.AbsCommand):
     def __init__(self, security_system):
         self._system = security_system

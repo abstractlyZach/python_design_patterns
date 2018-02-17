@@ -1,6 +1,10 @@
 from . import command_abc
 
 
+def make_commands(appliance):
+    return OnCommand(appliance), OffCommand(appliance)
+
+
 class OnCommand(command_abc.AbsCommand):
     def __init__(self, appliance):
         self._appliance = appliance
