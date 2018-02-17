@@ -8,6 +8,9 @@ class OnCommand(command_abc.AbsCommand):
     def execute(self):
         self._appliance.on()
 
+    def undo(self):
+        self._appliance.off()
+
 
 class OffCommand(command_abc.AbsCommand):
     def __init__(self, appliance):
@@ -15,3 +18,6 @@ class OffCommand(command_abc.AbsCommand):
 
     def execute(self):
         self._appliance.off()
+
+    def undo(self):
+        self._appliance.on()

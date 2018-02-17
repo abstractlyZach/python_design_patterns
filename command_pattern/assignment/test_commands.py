@@ -136,4 +136,34 @@ def test_security_already_disarmed(dog_and_invoker):
     with pytest.raises(Exception):
         dog.disarm()
 
+class TestUndo(object):
+    def test_on_undo(self, toaster_and_invoker):
+        toaster, invoker = toaster_and_invoker
+        invoker.activate(toaster)
+        invoker.undo()
+        assert not toaster.is_on
+
+    def test_off_undo(self, toaster_and_invoker):
+        toaster, invoker = toaster_and_invoker
+        toaster.on()
+        invoker.deactivate(toaster)
+        invoker.undo()
+        assert toaster.is_on
+
+    def test_two_undos(self, door_and_invoker):
+        door, invoker = door_and_invoker
+        invoker.activate(door)
+        invoker.deactivate(door)
+        for i in range(2):
+            invoker.undo()
+        assert not door.locked
+
+    def test_lots_of_undos(self, dog_and_invoker):
+        dog, invoker = dog_and_invoker
+        for i in range(30):
+            invoker.activate(dog)
+            invoker.deactivate(dog)
+        for i in range(40):
+            invoker.undo()
+        assert not dog.armed
 
