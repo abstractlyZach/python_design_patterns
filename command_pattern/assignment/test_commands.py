@@ -167,3 +167,7 @@ class TestUndo(object):
             invoker.undo()
         assert not dog.armed
 
+    def test_undo_too_many_times(self, dog_and_invoker):
+        dog, invoker = dog_and_invoker
+        with pytest.raises(Exception):
+            invoker.undo()
