@@ -33,14 +33,14 @@ def toaster_and_invoker():
 
 
 @pytest.fixture
-def dog_and_invoker():
-    doggo = Security()
-    activation_command = security_commands.ArmCommand(doggo)
-    deactivation_command = security_commands.DisarmCommand(doggo)
+def ninjas_and_invoker():
+    ninjas = Security()
+    activation_command = security_commands.ArmCommand(ninjas)
+    deactivation_command = security_commands.DisarmCommand(ninjas)
     command_invoker = invoker.Invoker()
-    command_invoker.set_object_commands(doggo, (activation_command,
+    command_invoker.set_object_commands(ninjas, (activation_command,
                                                   deactivation_command))
-    return doggo, command_invoker
+    return ninjas, command_invoker
 
 
 def test_basic_door_lock(door_and_invoker):
@@ -114,27 +114,27 @@ def test_appliance_already_off(toaster_and_invoker):
     with pytest.raises(Exception):
         toaster.off()
 
-def test_basic_security_arm(dog_and_invoker):
-    dog, invoker = dog_and_invoker
-    invoker.activate(dog)
-    assert dog.armed
+def test_basic_security_arm(ninjas_and_invoker):
+    ninjas, invoker = ninjas_and_invoker
+    invoker.activate(ninjas)
+    assert ninjas.armed
 
-def test_basic_security_disarm(dog_and_invoker):
-    dog, invoker = dog_and_invoker
-    dog.arm()
-    invoker.deactivate(dog)
-    assert not dog.armed
+def test_basic_security_disarm(ninjas_and_invoker):
+    ninjas, invoker = ninjas_and_invoker
+    ninjas.arm()
+    invoker.deactivate(ninjas)
+    assert not ninjas.armed
 
-def test_security_already_armed(dog_and_invoker):
-    dog, invoker = dog_and_invoker
-    dog.arm()
+def test_security_already_armed(ninjas_and_invoker):
+    ninjas, invoker = ninjas_and_invoker
+    ninjas.arm()
     with pytest.raises(Exception):
-        dog.arm()
+        ninjas.arm()
 
-def test_security_already_disarmed(dog_and_invoker):
-    dog, invoker = dog_and_invoker
+def test_security_already_disarmed(ninjas_and_invoker):
+    ninjas, invoker = ninjas_and_invoker
     with pytest.raises(Exception):
-        dog.disarm()
+        ninjas.disarm()
 
 class TestUndo(object):
     def test_on_undo(self, toaster_and_invoker):
@@ -158,16 +158,16 @@ class TestUndo(object):
             invoker.undo()
         assert not door.locked
 
-    def test_lots_of_undos(self, dog_and_invoker):
-        dog, invoker = dog_and_invoker
+    def test_lots_of_undos(self, ninjas_and_invoker):
+        ninjas, invoker = ninjas_and_invoker
         for i in range(30):
-            invoker.activate(dog)
-            invoker.deactivate(dog)
+            invoker.activate(ninjas)
+            invoker.deactivate(ninjas)
         for i in range(40):
             invoker.undo()
-        assert not dog.armed
+        assert not ninjas.armed
 
-    def test_undo_too_many_times(self, dog_and_invoker):
-        dog, invoker = dog_and_invoker
+    def test_undo_too_many_times(self, ninjas_and_invoker):
+        ninjas, invoker = ninjas_and_invoker
         with pytest.raises(Exception):
             invoker.undo()
