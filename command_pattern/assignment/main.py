@@ -22,7 +22,7 @@ def get_appliances():
 
 def get_doors():
     door_names = ['front door', 'back door', 'secret bookcase door',
-                  'lab door', 'interdimensional portal']
+                  'lab door', 'interdimensional portal', 'trapdoor']
     return {name: Door(name) for name in door_names}
 
 def get_security_systems():
@@ -81,7 +81,12 @@ if __name__ == '__main__':
     things = get_smushed_dict(things)
     logging.info('Application started.')
 
-    invoker.activate(things['ninjas'])
+    for thing in things.values():
+        invoker.activate(thing)
+
+    invoker.deactivate(things['trapdoor'])
+
+    invoker.activate ('abc')
 
 
 

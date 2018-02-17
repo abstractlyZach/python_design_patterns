@@ -5,4 +5,4 @@ import logging
 
 class NullCommand(command_abc.AbsCommand):
     def execute(self):
-        logging.info('null command.')
+        logging.error('null command.')
