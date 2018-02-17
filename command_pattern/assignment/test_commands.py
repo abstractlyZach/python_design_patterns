@@ -34,7 +34,7 @@ def toaster_and_invoker():
 
 @pytest.fixture
 def ninjas_and_invoker():
-    ninjas = Security()
+    ninjas = Security('ninjas')
     activation_command = security_commands.ArmCommand(ninjas)
     deactivation_command = security_commands.DisarmCommand(ninjas)
     command_invoker = invoker.Invoker()
