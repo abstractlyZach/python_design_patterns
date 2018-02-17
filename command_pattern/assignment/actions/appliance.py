@@ -7,12 +7,18 @@ class Appliance(object):
         self._is_on = False
 
     def on(self):
-        logging.info('%s has been turned on.' % self._name)
-        self._is_on = True
+        if self._is_on:
+            raise Exception('{} is already on.'.format(self._name))
+        else:
+            logging.info('%s has been turned on.' % self._name)
+            self._is_on = True
 
     def off(self):
-        logging.info('%s has been turned off.' % self._name)
-        self._is_on = False
+        if self._is_on:
+            logging.info('%s has been turned off.' % self._name)
+            self._is_on = False
+        else:
+            raise Exception('{} is already off.'.format(self._name))
 
     @property
     def is_on(self):
