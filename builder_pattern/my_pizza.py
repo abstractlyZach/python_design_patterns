@@ -1,6 +1,6 @@
 from abs_builder import AbsBuilder
 
-class MyPizza(AbsBuilder):
+class MyPizzaBuilder(AbsBuilder):
     """My favorite pizza"""
 
     def make_crust(self):
@@ -10,10 +10,10 @@ class MyPizza(AbsBuilder):
         self._pizza.sauce = 'Tomato'
 
     def add_meat(self):
-        self._pizza.meat = 'Sausage and Peperoni'
+        self._pizza.meat = 'Sausage and Pepperoni'
 
-    def add_vegies(self):
-        self._pizza.vegies = 'Tomatoes and olives'
+    def add_veggies(self):
+        self._pizza.veggies = 'Tomatoes and olives'
 
     def add_cheese(self):
-        self._pizza.topping = 'Mozarella'
+        self._pizza.topping = 'Mozzarella'
