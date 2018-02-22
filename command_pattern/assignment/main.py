@@ -1,5 +1,6 @@
 from collections import namedtuple
 import logging
+import random
 
 from actions.appliance import Appliance
 from actions.door import Door
@@ -81,7 +82,10 @@ if __name__ == '__main__':
     things = get_smushed_dict(things)
     logging.info('Application started.')
 
-    for thing in things.values():
+    stuff_to_activate = list(things.values())
+    random.shuffle(stuff_to_activate)
+
+    for thing in stuff_to_activate:
         invoker.activate(thing)
 
     invoker.deactivate(things['trapdoor'])
