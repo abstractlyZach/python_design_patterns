@@ -5,4 +5,6 @@ to each observer when state changes.
 The AbsSubject abstract base class that is used in this module has
 support for operating in push mode.  
 
-Modify the ContextObserver solution to operate in push mode.
+Create a magazine subscription service where different people can subscribe to
+different magazines. When a magazine releases a new version, every person
+subscribed is notified.
