@@ -110,3 +110,6 @@ venv.bak/
 
 # OSX
 .DS_STORE
+
+# pytest
+.pytest_cache
